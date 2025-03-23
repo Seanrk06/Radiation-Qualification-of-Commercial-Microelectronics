@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>A Novel Testing Framework for Radiation Qualification of Commercial Microelectronics</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+    }
+    p, li {
+      margin-bottom: 0.5em;
+    }
+    hr {
+      margin: 2em 0;
+    }
+    table {
+      border-collapse: collapse;
+      margin: 1em 0;
+      width: 100%;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 0.5em;
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Main Title -->
+  <h1>A Novel Testing Framework for Radiation Qualification of Commercial Microelectronics</h1>
+
+  <!-- Author and Contact Info -->
+  <section id="author-info">
+    <h2>Author &amp; Contact</h2>
+    <p><strong>Name:</strong> [Your Name]</p>
+    <p><strong>Email:</strong> <a href="mailto:yourname@example.com">yourname@example.com</a></p>
+    <p><strong>LinkedIn:</strong> 
+      <a href="https://www.linkedin.com/in/your-profile">https://www.linkedin.com/in/your-profile</a>
+    </p>
+    <p><strong>Portfolio:</strong>
+      <a href="https://www.your-portfolio-site.com">https://www.your-portfolio-site.com</a>
+    </p>
+    <p>This research was completed under the guidance of <strong>Prof. Bermel</strong>.</p>
+  </section>
+
+  <!-- Glossary/Table of Contents -->
+  <h2>Glossary of Sections</h2>
+  <ol>
+    <li><a href="#abstract">Abstract</a></li>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#baseline-modeling">Baseline Modeling Procedure</a></li>
+    <li><a href="#mechanical-thermal-constraints">Mechanical &amp; Thermal Constraints</a></li>
+    <li><a href="#primary-shielding-strategy">Primary Shielding Strategy</a></li>
+    <li><a href="#shielding-candidates">Shielding Candidates</a></li>
+    <li><a href="#overall-testing-procedure">Overall Testing Procedure</a></li>
+    <li><a href="#mathematical-justification">Mathematical Justification for Optimal Width</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#references">References &amp; Citations</a></li>
+  </ol>
+
+  <hr />
+
+  <!-- Abstract -->
+  <section id="abstract">
+    <h2>Abstract</h2>
+    <p>
+      Rising investments in the space industry has created greater demand for microelectronics usable in space vehicles. 
+      However, designing microelectronic components is challenging, due to the harsh environment, along with stringent weight 
+      and size constraints. This work focuses on designing a test protocol for an off-the-shelf component, the FTLX8574D3BCV 
+      Multimode 10G SFP+ optical transceiver, to measure its susceptibility to ionizing radiation and charged particles. 
+      Preliminary results suggest that combining high atomic-number materials (e.g., tungsten) to shield gamma radiation 
+      with complementary layers containing boron for neutron moderation can reduce the total shielding mass, compared to 
+      previously published shield designs. These findings offer an alternative solution for designing space-capable 
+      transceivers to allow for high-speed data transmission at low bit error rates. By evaluating an off the shelf component 
+      for space applications, this research presents a cost-effective option that may help reduce testing costs and accelerate 
+      qualification time for new parts, which is greatly needed in the growing space industry today.
+    </p>
+  </section>
+
+  <!-- Introduction -->
+  <section id="introduction">
+    <h2>Introduction</h2>
+    <p>
+      Shielding a commercial FTLX8574D3BCV 10G SFP+ optical transceiver for space requires balancing both radiation protection 
+      and SWaP (size, weight, and power) constraints. In space, the device will be exposed to ionizing radiation from protons 
+      (e.g. solar wind, SPEs), heavy ions (cosmic rays), and high-energy photons (gamma rays). Below, we explore lightweight, 
+      compact shielding solutions considering mechanical and thermal limitations as well as identify materials (and combinations) 
+      that efficiently attenuate these radiation types. We also compare shielding candidates against a baseline of 2 mm aluminum 
+      (Al), which is known to be insufficient against high energy protons. We modeled each candidate using TRIM (Transport of Ions 
+      in Matter), and have provided the results of such research below.
+    </p>
+  </section>
+
+  <!-- Baseline Modeling Procedure -->
+  <section id="baseline-modeling">
+    <h2>Baseline Modeling Procedure</h2>
+    <p>
+      <strong>Figure one, initial dimensions of FTLX8574D3BCV 10G SFP+</strong><br>
+      <em>[Image placeholder – Insert diagram of transceiver here]</em><br><br>
+      Source: <em>Digikey Datasheet FTLX8574D3BCV.pdf</em>
+    </p>
+    <p>
+      From this diagram, we identified three dimensions of significance: 56.50 mm (length), 13.70 mm (width), and 8.50 mm (height). 
+      My modeling approach focuses on radiation penetration through the device’s vertical dimension (8.5 mm). Although we went 
+      through multiple iterations, described below is our most recent baseline modeling of the transceiver. The approximate 
+      internal layering is:
+    </p>
+    <ul>
+      <li><strong>Top Shell (Upper metal housing)</strong> – 2 mm of Aluminum (2.7 g/cm³)</li>
+      <li><strong>Upper Internal Support</strong> – 1 mm of Polycarbonate</li>
+      <li><strong>Microcontroller Memory Chip</strong> – 0.3 mm of Silicon</li>
+      <li><strong>PCB Stack Up</strong> – 1.6 mm of composite FR4</li>
+      <li><strong>Lower Internal Support</strong> – 1 mm of Polycarbonate</li>
+      <li><strong>Bottom Metal Housing</strong> – 2 mm of Aluminum</li>
+    </ul>
+    <p>
+      Notes on the incidence model: This leaves about 0.6 mm unaccounted for, possibly an air gap or a slight misestimation 
+      in approximate thicknesses.
+    </p>
+    <p>
+      <strong>Additional Representative Image Placeholder:</strong><br>
+      <em>[Image placeholder – Internal cross-section of an optical transceiver]</em><br>
+      Source: <em>https://cloudswit.ch/blogs/the-most-comprehensive-guide-of-optical-modules/</em>
+    </p>
+    <h3>Baseline Penetration Testing Results</h3>
+    <p><em>[Include summary or placeholders for 5 MeV, 10 MeV, 50 MeV penetration test images/data]</em></p>
+    <p><strong>Sample Test @ 5 MeV</strong><br>
+      <em>[Image placeholder – Penetration test results @ 5 MeV]</em>
+    </p>
+    <p><strong>Sample Test @ 10 MeV</strong><br>
+      <em>[Image placeholder – Penetration test results @ 10 MeV]</em>
+    </p>
+    <p><strong>Sample Test @ 50 MeV</strong><br>
+      <em>[Image placeholder – Penetration test results @ 50 MeV]</em>
+    </p>
+  </section>
+
+  <!-- Mechanical & Thermal Constraints -->
+  <section id="mechanical-thermal-constraints">
+    <h2>Mechanical and Thermal Constraints Identified for Shielding Materials</h2>
+    <p>
+      <strong>Weight Constraints:</strong> The transceiver has a specific cross-section, and thick shielding drastically 
+      increases mass. We aim for the minimal required thickness to reduce weight.
+    </p>
+    <p>
+      <strong>Thermal Constraints:</strong> The FTLX8574D3BCV may dissipate ~1 W of heat. Overly insulating materials (e.g., 
+      some plastics) can cause overheating, so partial metal surfaces or thermally conductive layers can be important.
+    </p>
+    <p>
+      <strong>Structural Considerations:</strong> Polymers like pure polyethylene can outgas in space. Often, they require 
+      an encapsulating metallic foil for barrier protection and rigidity.
+    </p>
+  </section>
+
+  <!-- Primary Shielding Strategy -->
+  <section id="primary-shielding-strategy">
+    <h2>Primary Shielding Strategy (“The Graded-Z Approach”)</h2>
+    <p>
+      This research follows a graded-Z strategy, combining high atomic-number (Z) materials (e.g., tungsten, tantalum) 
+      with hydrogenous, low-Z materials (e.g., polyethylene). The high-Z layer absorbs and scatters gamma rays and electrons, 
+      while the low-Z layer further moderates and absorbs secondary radiation (like neutrons). NASA has recognized these 
+      multi-layer approaches as effective in mitigating secondary particle generation and penetration.
+    </p>
+    <p>
+      By layering tungsten or tantalum foil between polymer sheets (possibly boron-doped), we reduce overall thickness 
+      compared to using a single thick shield of aluminum or steel. This multi-layer method is intended to limit secondary 
+      radiation cascades and achieve high overall attenuation per unit mass.
+    </p>
+  </section>
+
+  <!-- Shielding Candidates -->
+  <section id="shielding-candidates">
+    <h2>Shielding Candidates</h2>
+    <p>
+      Below are examples of several multi-layer candidates tested via TRIM simulations to evaluate proton, electron, and 
+      photon penetration for energies up to 50 MeV.
+    </p>
+
+    <!-- Candidate 1 -->
+    <h3>Candidate 1: HDPE – Tungsten – HDPE</h3>
+    <p>
+      <strong>Inner Layer (HDPE):</strong> 1 mm thick<br>
+      Atomic Makeup: 86% C, 14% H; Density ~0.95 g/cm³
+    </p>
+    <p>
+      <strong>Middle Layer (Tungsten Foil):</strong> 0.25 mm thick<br>
+      Atomic Makeup: 100% W; Density 19.3 g/cm³
+    </p>
+    <p>
+      <strong>Outer Layer (HDPE):</strong> Same as inner, ~1 mm thick
+    </p>
+    <p>
+      The tests below show variations of the total thickness (full, half, quarter) to see how shielding efficiency changes. 
+      <em>[All images are placeholders for TRIM output graphs]</em>
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Penetration Test #</th>
+          <th>Energy (MeV)</th>
+          <th>Thickness Variation</th>
+          <th>Graph Placeholder</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Test 1</td>
+          <td>10</td>
+          <td>Baseline thickness (1 mm HDPE / 0.25 mm W / 1 mm HDPE)</td>
+          <td>[Image placeholder]</td>
+        </tr>
+        <tr>
+          <td>Test 2</td>
+          <td>50</td>
+          <td>Baseline thickness</td>
+          <td>[Image placeholder]</td>
+        </tr>
+        <tr>
+          <td>Test 3</td>
+          <td>10</td>
+          <td>Half thickness</td>
+          <td>[Image placeholder]</td>
+        </tr>
+        <tr>
+          <td>Test 4</td>
+          <td>50</td>
+          <td>Half thickness</td>
+          <td>[Image placeholder]</td>
+        </tr>
+        <tr>
+          <td>Test 5</td>
+          <td>10</td>
+          <td>Quarter thickness</td>
+          <td>[Image placeholder]</td>
+        </tr>
+        <tr>
+          <td>Test 6</td>
+          <td>50</td>
+          <td>Quarter thickness</td>
+          <td>[Image placeholder]</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Candidate 2 -->
+    <h3>Candidate 2: Boron-Loaded Polyethylene – Tantalum – Boron-Loaded Polyethylene</h3>
+    <p>
+      <strong>Inner Layer (Boron-Loaded Polyethylene):</strong> ~1 mm thick, density ~1 g/cm³<br>
+      <em>Approx. composition: B, C, H</em>
+    </p>
+    <p>
+      <strong>Middle Layer (Tantalum Foil):</strong> 0.3 mm thick<br>
+      Atomic Makeup: 100% Ta; Density ~16.7 g/cm³
+    </p>
+    <p>
+      <strong>Outer Layer (Boron-Loaded Polyethylene):</strong> Same spec as inner
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Penetration Test</th>
+          <th>Energy (MeV)</th>
+          <th>Thickness Variation</th>
+          <th>Graph Placeholder</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Test 1</td>
+          <td>10</td>
+          <td>Baseline thickness (1 mm / 0.3 mm / 1 mm)</td>
+          <td>[Image placeholder]</td>
+        </tr>
+        <tr>
+          <td>Test 2</td>
+          <td>50</td>
+          <td>Baseline thickness</td>
+          <td>[Image placeholder]</td>
+        </tr>
+        <tr>
+          <td>Test 3</td>
+          <td>10</td>
+          <td>Half thickness</td>
+          <td>[Image placeholder]</td>
+        </tr>
+        <tr>
+          <td>Test 4</td>
+          <td>50</td>
+          <td>Half thickness</td>
+          <td>[Image placeholder]</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Candidate 3 -->
+    <h3>Candidate 3: Aluminum–Tungsten–Polyethylene Graded-Z Stack</h3>
+    <p>
+      <strong>Outer Layer (Al):</strong> ~0.5 mm thick<br>
+      <strong>Middle Layer (Tungsten Foil):</strong> ~0.25 mm<br>
+      <strong>Inner Layer (HDPE):</strong> ~1 mm<br>
+      Total ~1.5 mm
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Penetration Test</th>
+          <th>Energy (MeV)</th>
+          <th>Thickness Variation</th>
+          <th>Graph Placeholder</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Test 1</td>
+          <td>10</td>
+          <td>Baseline thickness (0.5 mm Al / 0.25 mm W / 1 mm HDPE)</td>
+          <td>[Image placeholder]</td>
+        </tr>
+        <tr>
+          <td>Test 2</td>
+          <td>50</td>
+          <td>Baseline thickness</td>
+          <td>[Image placeholder]</td>
+        </tr>
+        <tr>
+          <td>Test 3</td>
+          <td>10</td>
+          <td>50% thickness</td>
+          <td>[Image placeholder]</td>
+        </tr>
+        <tr>
+          <td>Test 4</td>
+          <td>50</td>
+          <td>50% thickness</td>
+          <td>[Image placeholder]</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Candidate 4 -->
+    <h3>Candidate 4: Tungsten-Loaded Silicone Composite + HDPE Overlay</h3>
+    <p>
+      <strong>Layer 1 (Outermost):</strong> Tungsten-Loaded Silicone Composite (~0.5 mm)<br>
+      Approx. 22% W, 15.4% C, 46.3% H, 7.7% O, 7.7% Si. Estimated density ~6.9–11 g/cm³.
+    </p>
+    <p>
+      <strong>Layer 2 (Inner):</strong> HDPE (~1 mm)
+    </p>
+    <p>
+      <em>This composite provides a moderate fraction of high-Z tungsten to stop gamma and electrons, plus hydrogen for neutron 
+      moderation, all in a flexible matrix.</em>
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Penetration Test</th>
+          <th>Energy (MeV)</th>
+          <th>Thickness Variation</th>
+          <th>Graph Placeholder</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Test 1</td>
+          <td>10</td>
+          <td>Full thickness (0.5 mm composite / 1 mm HDPE)</td>
+          <td>[Image placeholder]</td>
+        </tr>
+        <tr>
+          <td>Test 2</td>
+          <td>50</td>
+          <td>Full thickness</td>
+          <td>[Image placeholder]</td>
+        </tr>
+        <tr>
+          <td>Test 3</td>
+          <td>10</td>
+          <td>50% of original thickness</td>
+          <td>[Image placeholder]</td>
+        </tr>
+        <tr>
+          <td>Test 4</td>
+          <td>50</td>
+          <td>50% of original thickness</td>
+          <td>[Image placeholder]</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Overall Testing Procedure -->
+  <section id="overall-testing-procedure">
+    <h2>Overall Testing Procedure For All Models</h2>
+    <p>
+      Each candidate design was tested in TRIM (Transport of Ions in Matter) simulations, assuming normal incidence of 
+      charged particles (protons, electrons) at various energies (5 MeV, 10 MeV, 50 MeV). The thickness and material 
+      composition were varied to evaluate how effectively the stack attenuates or stops the beam. In future hardware 
+      tests, we would expose an actual transceiver, plus any chosen shield design, to gamma, proton, and possibly neutron 
+      sources, measuring bit error rate (BER) and device functionality at each radiation dose. 
+    </p>
+    <p>
+      This step ensures that real-world usage matches modeling predictions, providing confidence in the part’s reliability 
+      for space missions.
+    </p>
+  </section>
+
+  <!-- Mathematical Justification -->
+  <section id="mathematical-justification">
+    <h2>Mathematical Justification for Optimal Width</h2>
+    <p>
+      Ideally, the optimal shield thickness is derived by balancing linear attenuation coefficients (for gamma) 
+      and nuclear interaction cross-sections (for protons/neutrons). A simplified approach uses the exponential 
+      attenuation law 
+      (<em>I = I<sub>0</sub> e<sup>-&mu;x</sup></em> for photons) and stopping power data for charged particles 
+      to find the minimal material thickness needed to reduce flux below mission limits.
+    </p>
+    <p>
+      Additional placeholders:
+    </p>
+    <ul>
+      <li><strong>Equations placeholder:</strong> [Insert or reference any equations used in full analysis]</li>
+      <li><strong>Experimental constants placeholder:</strong> [Density, cross-sections, etc. might appear here]</li>
+    </ul>
+  </section>
+
+  <!-- Conclusion -->
+  <section id="conclusion">
+    <h2>Conclusion</h2>
+    <p>
+      In conclusion, multi-layer “graded-Z” shielding solutions combining high-Z and low-Z materials show promise in 
+      protecting an off-the-shelf 10G optical transceiver from ionizing radiation. Modern references suggest that 
+      tungsten, tantalum, or other high-Z foils coupled with hydrogenous layers (HDPE, boron-doped polyethylene, 
+      silicone composites) can outperform single-material aluminum shields. The TRIM-based modeling and eventual 
+      real-world testing will help finalize a design that balances SWaP constraints, thermal performance, and 
+      radiation hardness, with the aim of accelerating qualification of commercial parts for space.
+    </p>
+  </section>
+
+  <!-- References & Citations -->
+  <section id="references">
+    <h2>References &amp; Citations</h2>
+    <ol>
+      <li>
+        NASA Document on Graded-Z Shielding. 
+        <em>https://ntrs.nasa.gov/api/citations/20140002469/downloads/20140002469.pdf</em>
+      </li>
+      <li>
+        Digikey Datasheet FTLX8574D3BCV. 
+        <em>[Insert updated or modern link]</em>
+      </li>
+      <li>
+        “Radiation Shielding Materials,” NASA NIAC Study. 
+        <em>[Insert updated citation or standard NASA reference]</em>
+      </li>
+      <li>
+        Additional placeholders for modern references or deep research justification. 
+      </li>
+    </ol>
+  </section>
+
+</body>
+</html>
