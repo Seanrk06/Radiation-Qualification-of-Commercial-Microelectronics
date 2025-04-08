@@ -23,18 +23,34 @@
     p, li {
       margin-bottom: 0.75em;
     }
-    /* A special style for lines you explicitly want bolded / highlighted */
+    /* Style for bolded lines */
     .bolded-line {
       font-weight: bold;
       background-color: #f9f9f9;
       border-left: 4px solid #ccc;
       padding: 8px;
       margin: 8px 0;
-      display: block; /* So it appears as a separate line or paragraph */
+      display: block;
+    }
+    /* Figure styling */
+    figure {
+      text-align: center;
+      margin: 20px 0;
+    }
+    figure img {
+      max-width: 400px; /* Adjust size as needed */
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    figcaption {
+      font-style: italic;
+      margin-top: 8px;
+      text-align: center;
     }
   </style>
 </head>
-
 <body>
 
   <!-- Main Title (centered) -->
@@ -45,7 +61,7 @@
     <h2>Author Info</h2>
     <p><strong>Name:</strong> Sean Klein</p>
     <p><strong>Email:</strong> <a href="mailto:klein155@purdue.edu">klein155@purdue.edu</a></p>
-    <p><strong>LinkedIn:</strong> 
+    <p><strong>Linkedin:</strong> 
       <a href="https://www.linkedin.com/in/sean-klein-b98157235/">https://www.linkedin.com/in/sean-klein-b98157235/</a>
     </p>
     <p>This research was completed under the guidance of Prof. Bermel.</p>
@@ -81,7 +97,7 @@
     data instead of electrical currents. Optical transmission can reduce the weight, and can be more robust against 
     certain types of radiation acting as an alternative. The FTLX8574D3BCV Multimode 10G SFP+ optical transceiver 
     is one example of a photonic device. It converts electrical signals into optical signals and vice versa which 
-    allows for high speed data transmission, critical for space applications
+    allows for high speed data transmission, critical for space applications.
   </p>
   <p>
     We used Transport of Ions in Matter (TRIM) software to evaluate the performance of the FTLX8574D3BCV off-the-shelf 
@@ -103,7 +119,10 @@
     below are approximations based on research done as we was unable to find a detailed manufacturing datasheet 
     for the internal components as they’re likely proprietary.
   </p>
-  <p><em>Figure 1. Dimensions of FTLX8574D3BCV 10G SFP+ Transceiver [1]</em></p>
+  <figure>
+    <img src="https://research25.s3.us-east-1.amazonaws.com/Parameters+of+Significance.png" alt="Dimensions of the transceiver">
+    <figcaption>Figure 1. Dimensions of FTLX8574D3BCV 10G SFP+ Transceiver [1]</figcaption>
+  </figure>
   <p>
     From this diagram, we identified three key dimensions: the transceiver's length is 56.50 mm, its width is 13.70 mm, 
     and its height is 8.50 mm. We used these measurements to conduct initial incidence testing to evaluate the 
@@ -121,40 +140,33 @@
     <li class="bolded-line">Bottom Shell (Bottom Metal Housing) [2] - 2mm</li>
   </ul>
 
-  <p><strong>
-    Notes on the incidence model: </strong>
-    Approximately 0.6 mm remains unaccounted for, which may be due to the presence of an air gap or potential 
-    inaccuracies in the estimates.
-  
-  </p>
+  <p><strong>Notes on the incidence model:</strong> Approximately 0.6 mm remains unaccounted for, which may be due to the presence of an air gap or potential inaccuracies in the estimates.</p>
 
-  <p><em>Figure 2. Visual Deconstruction of the Optical Transceiver [3]</em></p>
+  <figure>
+    <img src="https://research25.s3.us-east-1.amazonaws.com/image_of_tranceiver.png" alt="Visual deconstruction of the optical transceiver">
+    <figcaption>Figure 2. Visual Deconstruction of the Optical Transceiver [4]</figcaption>
+  </figure>
 
   <!-- Baseline TRIM Models -->
   <h2>Baseline TRIM Models</h2>
-  <p><em>Figure 3. Baseline Material Penetration Testing at 5 MeV</em></p>
-  <p><em>Figure 4. Baseline Material Penetration Testing at 10MeV</em></p>
-  <p><em>Figure 5. Baseline Material Penetration Testing at 50 MeV</em></p>
+  <figure>
+    <img src="https://research25.s3.us-east-1.amazonaws.com/original_(5)MeV.png" alt="Baseline Material Penetration Testing at 5 MeV">
+    <figcaption>Figure 3. Baseline Material Penetration Testing at 5 MeV</figcaption>
+  </figure>
+  <figure>
+    <img src="https://research25.s3.us-east-1.amazonaws.com/original_(10)MeV.png" alt="Baseline Material Penetration Testing at 10 MeV">
+    <figcaption>Figure 4. Baseline Material Penetration Testing at 10MeV</figcaption>
+  </figure>
+  <figure>
+    <img src="https://research25.s3.us-east-1.amazonaws.com/original_(50)MeV.png" alt="Baseline Material Penetration Testing at 50 MeV">
+    <figcaption>Figure 5. Baseline Material Penetration Testing at 50 MeV</figcaption>
+  </figure>
 
   <!-- Mechanical and Thermal Constraints -->
   <h2>Mechanical and Thermal Constraints Identified</h2>
-  <p>
-    <strong>Weight Constraints:</strong> 
-    The transceiver has a specific cross-section that we need to consider when designing the shielding thickness. 
-    We want to maintain an equal thickness at most but hope to improve or lessen it to decrease the overall weight.
-  </p>
-  <p>
-    <strong>Thermal Constraints:</strong>
-    The FTLX8574D3BCV dissipates up to ~1 W of heat​. Enclosing it in an insulating material (like a plastic shield) 
-    could cause overheating. Shield designs should allow heat to escape. For example, using thermally conductive layers 
-    or ensuring some metal surface is exposed to radiate heat.
-  </p>
-  <p>
-    <strong>Structural Considerations:</strong>
-    Pure polyethylene can outgas or be flammable [4], so in space, it often needs encapsulation​. 
-    Encapsulating a polymer shield in a thin metallic foil (e.g., aluminum or steel) can provide a barrier 
-    against outgassing and also add rigidity.
-  </p>
+  <p><strong>Weight Constraints:</strong> The transceiver has a specific cross-section that we need to consider when designing the shielding thickness. We want to maintain an equal thickness at most but hope to improve or lessen it to decrease the overall weight.</p>
+  <p><strong>Thermal Constraints:</strong> The FTLX8574D3BCV dissipates up to ~1 W of heat. Enclosing it in an insulating material (like a plastic shield) could cause overheating. Shield designs should allow heat to escape. For example, using thermally conductive layers or ensuring some metal surface is exposed to radiate heat.</p>
+  <p><strong>Structural Considerations:</strong> Pure polyethylene can outgas or be flammable [5], so in space, it often needs encapsulation. Encapsulating a polymer shield in a thin metallic foil (e.g., aluminum or steel) can provide a barrier against outgassing and also add rigidity.</p>
 
   <!-- Primary Shielding Strategy -->
   <h2>Primary Shielding Strategy</h2>
@@ -165,11 +177,11 @@
     material will absorb and scatter most gamma rays and electrons (and also slow down some fraction of protons), 
     while the low-Z material will thermalize and absorb the secondary radiation (like neutrons, lower-energy X-rays) 
     and further slow any charged particles that penetrated the first layer. By “layering” in this way, we can avoid 
-    the buildup of dangerous secondary particles that a thick single-material shield would create. [5]
+    the buildup of dangerous secondary particles that a thick single-material shield would create. [6]
   </p>
   <p>
     We plan to demonstrate the efficacy of a high Z layer, between two lower Z materials. This low, high, low 
-    layering method has been tested to lessen electron penetration by over 60% [5]. Additionally, we will model 
+    layering method has been tested to lessen electron penetration by over 60% [6]. Additionally, we will model 
     neutron-absorbing dopants such as boron, lithium, or beryllium. NASA has identified these strategies as being 
     effective in mitigating secondary neutron effects from shielding.
   </p>
@@ -184,19 +196,43 @@
     <li class="bolded-line">Candidate 1: HDPE–Tungsten–HDPE</li>
     <li class="bolded-line">Candidate 2: Boron-Doped Polyethylene–Tantalum–Boron-Doped Polyethylene</li>
     <li class="bolded-line">Candidate 3: Aluminum–Tungsten–Polyethylene Graded-Z Stack</li>
-    <li class="bolded-line">Candidate 4: Tungsten-Loaded Silicone Composite + HDPE Overlay [6]</li>
+    <li class="bolded-line">Candidate 4: Tungsten-Loaded Silicone Composite + HDPE Overlay [7]</li>
   </ul>
 
   <!-- Results -->
   <h1>Results</h1>
-  <p><em>Figure 5. Candidate 1 Penetration Testing 10 MeV</em></p>
-  <p><em>Figure 6. Candidate 1 Penetration Testing 50 MeV</em></p>
-  <p><em>Figure 7. Candidate 2 Penetration Testing 10 MeV</em></p>
-  <p><em>Figure 8. Candidate 2 Penetration Testing 50 MeV</em></p>
-  <p><em>Figure 9. Candidate 3 Penetration Testing 10 MeV</em></p>
-  <p><em>Figure 10. Candidate 3 Penetration Testing 50 MeV</em></p>
-  <p><em>Figure 11. Candidate 4 Penetration Testing 10 MeV</em></p>
-  <p><em>Figure 12. Candidate 4 Penetration Testing 50 MeV</em></p>
+  <figure>
+    <img src="https://research25.s3.us-east-1.amazonaws.com/candidate(1)_(10)MeV_Group(1).png" alt="Candidate 1 Penetration Testing at 10 MeV">
+    <figcaption>Figure 5. Candidate 1 Penetration Testing 10 MeV</figcaption>
+  </figure>
+  <figure>
+    <img src="https://research25.s3.us-east-1.amazonaws.com/candidate(1)_(50)MeV_Group(1).png" alt="Candidate 1 Penetration Testing at 50 MeV">
+    <figcaption>Figure 6. Candidate 1 Penetration Testing 50 MeV</figcaption>
+  </figure>
+  <figure>
+    <img src="https://research25.s3.us-east-1.amazonaws.com/candidate(2)_(10)MeV_Group(1).png" alt="Candidate 2 Penetration Testing at 10 MeV">
+    <figcaption>Figure 7. Candidate 2 Penetration Testing 10 MeV</figcaption>
+  </figure>
+  <figure>
+    <img src="https://research25.s3.us-east-1.amazonaws.com/candidate(2)_(50)MeV_Group(1).png" alt="Candidate 2 Penetration Testing at 50 MeV">
+    <figcaption>Figure 8. Candidate 2 Penetration Testing 50 MeV</figcaption>
+  </figure>
+  <figure>
+    <img src="https://research25.s3.us-east-1.amazonaws.com/candidate(3)_(10)MeV_Group(1).png" alt="Candidate 3 Penetration Testing at 10 MeV">
+    <figcaption>Figure 9. Candidate 3 Penetration Testing 10 MeV</figcaption>
+  </figure>
+  <figure>
+    <img src="https://research25.s3.us-east-1.amazonaws.com/candidate(3)_(50)MeV_Group(1).png" alt="Candidate 3 Penetration Testing at 50 MeV">
+    <figcaption>Figure 10. Candidate 3 Penetration Testing 50 MeV</figcaption>
+  </figure>
+  <figure>
+    <img src="https://research25.s3.us-east-1.amazonaws.com/candidate(4)_(10)MeV_Group(1).png" alt="Candidate 4 Penetration Testing at 10 MeV">
+    <figcaption>Figure 11. Candidate 4 Penetration Testing 10 MeV</figcaption>
+  </figure>
+  <figure>
+    <img src="https://research25.s3.us-east-1.amazonaws.com/candidate(4)_(50)MeV_Group(1).png" alt="Candidate 4 Penetration Testing at 50 MeV">
+    <figcaption>Figure 12. Candidate 4 Penetration Testing 50 MeV</figcaption>
+  </figure>
 
   <!-- References -->
   <h1>References</h1>
@@ -217,9 +253,7 @@
     <li>
       Müllerchen, J. (2007, February 12). <em>GBIC und SFP</em> [Photograph]. Wikimedia Commons. CC BY-SA 2.0 Germany. 
       Changes were made to the original. 
-      <a href="https://commons.wikimedia.org/wiki/File:GBIC_und_SFP.jpg">
-        https://commons.wikimedia.org/wiki/File:GBIC_und_SFP.jpg
-      </a>
+      <a href="https://commons.wikimedia.org/wiki/File:GBIC_und_SFP.jpg">https://commons.wikimedia.org/wiki/File:GBIC_und_SFP.jpg</a>
     </li>
     <li>
       Thibeault, S., Fay, C., Lowther, S., Earle, K., Sauti, G., Kang, J., Park, C., &amp; McMullen, A. (2012, September 30). 
